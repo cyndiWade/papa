@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+  <include file="Header:top" />
+  
+<style>
+.newbtn{
+	float:right;
+	margin:-4px 40px 0 0;
+}
+</style>
+<script type="text/javascript" src="Home/Public/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript">
+$(function () {
+	
+	//日历模块
+	(function () {
+		var options = {
+			dateFormat:'yy-mm-dd',		//日期格式
+			showButtonPanel:true,		//开启今天标示
+			changeYear:true,				//显示年份
+			changeMonth:true,				//显示月份
+			showMonthAfterYear:true,	//互换位置			
+		};
+		$('#dateMe').datepicker(options);		
+	})();		
+		
+});
+</script>
+</head>
+<body>
+	
+<include file="Header:header" />
+<include file="Header:left" />
+        <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+
+                <div class="heading">
+
+                    <h3>个人中心</h3>                    
+
+                </div><!-- End .heading-->
+
+                <!-- Build page from here: -->
+                <div class="row-fluid">
+
+                    <div class="span12">
+                    	
+                        <form class="form-horizontal seperator" action="?s=/Personal/meSave" method="post">
+							<div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="username">用户名：</label>
+                                        <input class="span4" id="username" type="text" disabled="disabled" value="{$Content.account}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="name">姓名：</label>
+                                        <input class="span4" id="name" type="text" name="nickname" value="{$Content.nickname}" />
+                                    </div>
+                                </div>
+                            </div>
+							<div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="normal">密码：</label>
+                                        <div class="span4 controls">
+                                            <input class="span12"  type="password" name="password1" id="password"  placeholder="输入您的密码"  />
+											<input class="span12" type="password" name="password2" id="passwordConfirm" placeholder="再次输入密码" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							<!-- 
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="email">邮箱：</label>
+                                        <input class="span4" id="email" type="text" value="jonhdoe@gmail.com" />
+                                    </div>
+                                </div>
+                            </div>
+							-->
+							<div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="email">手机：</label>
+                                        <input class="span4" id="email" type="text" name="email" value="{$Content.email}" />
+                                    </div>
+                                </div>
+                            </div>
+							<div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="email">生日：</label>
+                                        <input class="span4" id="dateMe" type="text" name="birthdays" value="{$Content.birthdays}" />
+                                    </div>
+                                </div>
+                            </div>
+							<div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="email">年龄：</label>
+                                        <input class="span4" id="email" type="text" name="age" value="{$Content.age}" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row-fluid">
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <label class="form-label span3" for="email">性别：</label>
+										
+										<if condition="$Content['sex'] eq 1">
+											<div class="left marginT5 marginR10">
+	                                            <input type="radio" name="sex" value="1" id="optionsRadios1" checked="checked" value="1"/>男
+	                                        </div>
+	                                        <div class="left marginT5 marginR10">
+	                                            <input type="radio" name="sex" value="0" id="optionsRadios2" />女
+	                                        </div>
+										<elseif condition="$vo['state'] eq 0"/>
+											<div class="left marginT5 marginR10">
+	                                            <input type="radio" name="sex" value="1" id="optionsRadios1"  value="1"/>男
+	                                        </div>
+	                                        <div class="left marginT5 marginR10">
+	                                            <input type="radio" name="sex" value="0" id="optionsRadios2" checked="checked"/>女
+	                                        </div>
+										</if>
+				
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row row-fluid">        
+                                <div class="span12">
+                                    <div class="row-fluid">
+                                        <div class="form-actions">
+                                        <div class="span3"></div>
+                                        <div class="span4 controls">
+                                            <button type="submit" class="btn btn-info marginR10">确定</button>
+                                            <!-- <button class="btn btn-danger">取消</button> -->
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>   
+                            </div>
+                        </form>
+                      
+                    </div><!-- End .span12 -->
+
+                </div><!-- End .row-fluid -->
+
+                <div class="modal fade hide" id="myModal1">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span class="icon12 minia-icon-close"></span></button>
+                        <h3>Chat layout</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="messages">
+                            <li class="user clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar2.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Lazar</strong> says:</span>
+                                        <span class="time">25 seconds ago</span>
+                                    </div>
+                                    <p>
+                                        Time to go i call you tomorrow.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="admin clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar3.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Sugge</strong> says:</span>
+                                        <span class="time">just now</span>
+                                    </div>
+                                    <p>
+                                        OK, have a nice day.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="sendMsg">
+                                <form class="form-horizontal" action="#">
+                                    <textarea class="elastic" id="textarea1" rows="1" placeholder="Enter your message ..." style="width:98%;"></textarea>
+                                    <button type="submit" class="btn btn-info marginT10">Send message</button>
+                                </form>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+	
+	
+<include file="Footer:bottom" />

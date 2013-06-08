@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <include file="Header:top" />
+  
+<style>
+.newbtn{
+	float:right;
+	margin:-4px 40px 0 0;
+}
+</style>
+</head>
+<body>
+	
+<include file="Header:header" />
+<include file="Header:left" />
+
+        <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+
+                <div class="heading">
+
+                    <h3>项目管理</h3>                    
+
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 icomoon-icon-search-3"></span></a>
+                    </div>
+
+                </div><!-- End .heading-->
+                    
+                <!-- Build page from here: Usual with <div class="row-fluid"></div> -->
+
+                    <div class="row-fluid">
+
+                        <div class="span6">
+                            
+                            <div class="box">
+
+                                <div class="title">
+
+                                    <h4>
+                                        <span class="icon16 icomoon-icon-equalizer-2"></span>
+                                        <span>项目列表</span><a href="?s=/Project/edit"><button class="btn newbtn">新建</button></a>
+                                    </h4>
+                                    <a href="#" class="minimize">Minimize</a>
+                                </div>
+                                <div class="content noPad">
+                                    <table class="responsive table table-bordered">
+                                        <thead>
+                                          <tr>
+                                            <th>编号</th>
+                                            <th>项目名</th>
+                                            <th>开始时间</th>
+                                            <th>结束时间</th>
+											 <th>参与人员耗时</th>
+											<!-- 
+                                            <th>负责人</th>
+											-->
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+										  <volist name="html" id="vo" key="ii">
+                                          <tr>
+                                            <td>{$ii}</td>
+                                            <td>{$vo.pname}</td>
+                                            <td>{$vo.start_time}</td>
+                                            <td>{$vo.end_time}</td>
+                                            <td style="width:30%;">
+											<volist name="vo.time" id="time">
+												{$time} &nbsp;&nbsp;&nbsp;
+											</volist>
+												
+												
+											
+											</td>
+                                            <td><if condition="$vo['state'] eq 0">提案中
+												<elseif condition="$vo['state'] eq 1"/>开发中
+												<elseif condition="$vo['state'] eq 2"/>完成
+												<elseif condition="$vo['state'] eq 3"/>开发终止
+												</if>
+											</td>
+                                            <td>
+                                                <div class="controls center">
+													<a href="?s=/Project/PM/{$vo.pid}" title="负责人修改" class="tip"><span class="icon12 icomoon-icon-user-3"></span></a>
+                                                    <a href="?s=/Project/edit/{$vo.pid}" title="编辑" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
+                                                    <a href="#" title="查看" class="tip"><span class="icon12 icomoon-icon-folder"></span></a>
+													<a href="?s=/Project/projectDelete/{$vo.pid}" title="删除" class="tip" onclick="return confirm('确定要删除吗？') ? true : false"><span class="icon12 icomoon-icon-remove"></span></a>
+                                                </div>
+                                            </td>
+                                          </tr>
+										  </volist>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div><!-- End .box -->
+
+                        </div><!-- End .span6 -->
+
+                    </div><!-- End .row-fluid -->
+               
+                <!-- Page end here -->
+                    
+                <div class="modal fade hide" id="myModal1">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span class="icon12 minia-icon-close"></span></button>
+                        <h3>Chat layout</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="messages">
+                            <li class="user clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar2.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Lazar</strong> says:</span>
+                                        <span class="time">25 seconds ago</span>
+                                    </div>
+                                    <p>
+                                        Time to go i call you tomorrow.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="admin clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar3.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Sugge</strong> says:</span>
+                                        <span class="time">just now</span>
+                                    </div>
+                                    <p>
+                                        OK, have a nice day.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="sendMsg">
+                                <form class="form-horizontal" action="#">
+                                    <textarea class="elastic" id="textarea" rows="1" placeholder="Enter your message ..." style="width:98%;"></textarea>
+                                    <button type="submit" class="btn btn-info marginT10">Send message</button>
+                                </form>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+
+<include file="Footer:bottom" />

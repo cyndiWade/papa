@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=9">
+
+<title>OA.时间轴</title>
+<link href="Home/Public/Css/Smohan.blog.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+* {
+	padding:0;
+	margin: 0;
+}
+.left {
+	float:left;
+	width:500px;
+}
+.right {
+	float:right;
+	width:520px
+}
+</style>
+</head>
+<body>
+<br />
+<br />
+<!-- 
+<center>
+  <h2>任务时间表</h2>
+</center>
+-->
+<!--ShowMsg-->
+
+<center>
+  <h2 style="color:#85BE19;"></h2>
+</center>
+<br />
+<volist name="html" id="vo">
+<center>
+  <h2 style="color:#85BE19;">{$vo.date}</h2>
+</center>
+<div id="Container">
+	<!-- 任务时间线 -->
+  <div class="timeline_container">
+    <div class="timeline">
+      <div class="plus"></div>
+      <!--<div class="plus2"></div>-->
+    </div>
+  </div>
+
+  	<div class="left">
+	<volist name="vo.pm" id="voPm" >
+	<!-- 内容左边 -->	
+	  <div class="item" >
+		<span class='rightCorner'></span>
+	    <h3> <span class="fl">{$voPm[0]['nickname']}：</span> <span class="fr">  </span></h3>
+		
+		<volist name="voPm" id="voPmT" key="num1">
+	    <p class="con">{$voPmT.pname}({$voPmT.spend}H)：{$voPmT.content}</p>
+		</volist>
+	    <!--<h4><b>12</b></h4> -->
+	  </div> 
+	</volist>
+	</div>
+	
+ 	<!-- 内容右边 -->
+  	<div class="right">  
+	
+	<volist name="vo.user" id="voUser" >	
+	  <div class="item">
+	  	<span class='leftCorner'></span>
+	    <h3> <span class="fl">{$voUser[0]['nickname']}： </span> <span class="fr"></span> </h3>
+		
+	    <volist name="voUser" id="voUserT" key="num2">
+	    <p class="con">{$voUserT.pname}({$voUserT.spend}H)：{$voUserT.content}</p>
+		</volist>
+	  </div>
+	</volist>
+ 	</div>
+
+</div>
+</volist>
+
+</body>
+</html>

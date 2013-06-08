@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <include file="Header:top" />
+	
+	<!---time JS--->
+	
+<style>
+.ttl01{
+	width:320px !important;
+	text-align:right !important;
+}
+
+textarea{
+	height:50px;
+}
+
+.btn{
+	float:left;
+}
+
+.btnsure{
+	margin:0 0 0 400px !important;
+}
+</style>
+       </head>
+<body>
+	
+<include file="Header:header" />
+<include file="Header:left" />
+
+        <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+
+                <div class="heading">
+
+                    <h3>Static tables</h3>                    
+
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 icomoon-icon-search-3"></span></a>
+                    </div>
+                </div><!-- End .heading-->
+                    
+                <!-- Build page from here: Usual with <div class="row-fluid"></div> -->
+
+                    <div class="row-fluid">
+
+                        <div class="span6">
+                            
+                            <div class="box">
+
+                                <div class="title">
+
+                                    <h4>
+                                        <span class="icon16 icomoon-icon-equalizer-2"></span>
+                                        <span>编辑项目</span>
+                                    </h4>
+                                    <a href="#" class="minimize">Minimize</a>
+                                </div>
+                                <div class="content noPad">
+									<form method="post" action="?s=/Project/save">
+                                    <table class="responsive table table-bordered">
+                                        <thead>
+                                          <tr>
+                           
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr>
+                                            <th class="ttl01">项目名：</th>
+                                            <th><input type="textbox" name="pname" value="{$list['pname']}"/></th>
+                                          </tr>
+										  <tr>
+                                            <th class="ttl01">开始时间：</th>
+                                            <th><p><input type="textbox" id="datepicker" name="start_time" value="{$list['start_time']}"/></p></th>
+                                          </tr>
+										  <tr>
+                                            <th class="ttl01">结束时间：</th>
+                                            <th><p><input type="textbox" id="datepicker1" name="end_time" value="{$list['end_time']}"/></p></th>
+                                          </tr>
+										  <!--
+										   <tr>
+                                            <th class="ttl01">member：</th>
+                                            <th><input type="textbox" name="member" value="{$list['member']}"/></th>
+                                          </tr>
+										  -->
+										  <tr>
+                                            <th class="ttl01">状态：</th>
+                                            <td>
+                                            	<div class="span8 controls">   
+                                                        <select name="state" value="3">
+															<if condition="$list['state'] eq 0">
+															<option value="0" selected="selected">提案中</option>
+															<else/>
+															<option value="0">提案中</option>
+															</if>
+															<if condition="$list['state'] eq 1">
+															<option value="1" selected="selected">开发中</option>
+															<else/>
+															<option value="1">开发中</option>
+															</if>
+															<if condition="$list['state'] eq 2">
+															<option value="2" selected="selected">完成</option>
+															<else/>
+															<option value="2">完成</option>
+															</if>
+															<if condition="$list['state'] eq 3">
+															<option value="3" selected="selected">开发终止</option>
+															<else/>
+															<option value="3">开发终止</option>
+															</if>
+                                                        </select>
+                                                 </div> 
+												<input type="hidden" name="pid" value="{$list['pid']}">
+											</td>
+                                          </tr>
+											
+										 <tr>
+                                            <th class="ttl01">客户：</th>
+                                            <th><input type="textbox" name="client" value="{$list['client']}"/></th>
+                                          </tr>
+										  <tr>
+                                            <th class="ttl01">预算：</th>
+                                            <th><input type="textbox" name="budget" value="{$list['budget']}"/></th>
+                                          </tr>
+										  <tr>
+                                            <th class="ttl01">项目类型：</th>
+                                            <th><input type="textbox" name="type" value="{$list['type']}"/></th>
+                                          </tr>
+										  <!-- 
+										  <tr>
+                                            <th class="ttl01">参与人员：</th>
+                                            <th><textarea  name="person" >{$list['person']}</textarea></th>
+                                          </tr>
+										  -->
+										  <tr>
+                                            <th class="ttl01">备注：</th>
+                                            <th><textarea name="remarks" >{$list['remarks']}</textarea></th>
+                                          </tr>
+										  <tr>
+                                            <th class="ttl01">参考资料：</th>
+                                            <th><textarea name="reference" >{$list['reference']}</textarea></th>
+                                          </tr>
+											
+										  <tr>
+                                            <td colspan="2"><button class="btn btnsure">确认</button></td>
+                                          </tr>
+                                        </tbody>
+                                    </table>
+									</form>
+                                </div>
+
+                            </div><!-- End .box -->
+
+                        </div><!-- End .span6 -->
+
+                    </div><!-- End .row-fluid -->
+               
+                <!-- Page end here -->
+                    
+                <div class="modal fade hide" id="myModal1">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span class="icon12 minia-icon-close"></span></button>
+                        <h3>Chat layout</h3>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="messages">
+                            <li class="user clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar2.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Lazar</strong> says:</span>
+                                        <span class="time">25 seconds ago</span>
+                                    </div>
+                                    <p>
+                                        Time to go i call you tomorrow.
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="admin clearfix">
+                                <a href="#" class="avatar">
+                                    <img src="images/avatar3.jpeg" alt="" />
+                                </a>
+                                <div class="message">
+                                    <div class="head clearfix">
+                                        <span class="name"><strong>Sugge</strong> says:</span>
+                                        <span class="time">just now</span>
+                                    </div>
+                                    <p>
+                                        OK, have a nice day.
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="sendMsg">
+                                <form class="form-horizontal" action="#">
+                                    <textarea class="elastic" id="textarea" rows="1" placeholder="Enter your message ..." style="width:98%;"></textarea>
+                                    <button type="submit" class="btn btn-info marginT10">Send message</button>
+                                </form>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn" data-dismiss="modal">Close</a>
+                    </div>
+                </div>
+                
+            </div><!-- End contentwrapper -->
+        </div><!-- End #content -->
+    
+    </div><!-- End #wrapper -->
+
+
+<include file="Footer:bottom" />

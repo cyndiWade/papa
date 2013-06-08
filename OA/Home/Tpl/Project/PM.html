@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <include file="Header:top" />
+
+    </head>
+	<body>
+	
+	<include file="Header:header" />
+	<include file="Header:left" />
+
+	
+	
+	 <!--Body content-->
+        <div id="content" class="clearfix">
+            <div class="contentwrapper"><!--Content wrapper-->
+
+                <div class="heading">
+
+                    <h3>项目管理</h3>                    
+
+                    <div class="resBtnSearch">
+                        <a href="#"><span class="icon16 icomoon-icon-search-3"></span></a>
+                    </div>
+
+                    <div class="search" >
+
+                        <form id="searchform" action="search.html">
+                            <input type="text" id="tipue_search_input" class="top-search" placeholder="Search here ..." />
+                            <input type="submit" id="tipue_search_button" class="search-btn" value=""/>
+                        </form>
+                
+                    </div><!-- End search -->
+                    
+
+
+                </div><!-- End .heading-->
+                    
+                <!-- Build page from here: Usual with <div class="row-fluid"></div> -->
+
+
+                    <div class="row-fluid">
+
+                        <div class="span6">
+                            
+                            <div class="box">
+
+                                <div class="title">
+
+                                    <h4>
+                                        	当前项目：<span >{$projectContent.pname}</span>	
+                                    </h4>
+                                </div>
+                                <div class="content">
+
+                                    <form class="form-horizontal" action="" method="post">
+									<input type="hidden" name="pid" value="{$pid}" />
+									<input type="hidden" name="PREV_URL" value="{$PREV_URL}" />
+                                        <div class="form-row row-fluid">
+                                            <div class="span12">
+                                                <div class="leftBox">
+                                                    <div class="searchBox"><input type="text" id="box1Filter" class="searchField" placeholder="搜索......"/><button id="box1Clear" type="button" class="btn"><span class="icon12  icomoon-icon-cancel-3"></span></button></div>
+                                                    <!-- 左边的 -->
+													<span style="color:red;">人员</span>
+                                                    <select id="box1View" multiple="multiple" class="multiple nostyle" style="height:300px;">
+                                                        <volist name="htmlUser" id="vo">
+														<option value="{$vo.id}">{$vo.nickname}</option>
+														</volist>
+                                                    </select>
+                                                    <br/>
+                                                    <span id="box1Counter" class="count"></span>
+                                                    
+                                                    <div class="dn"><select id="box1Storage" name="box1Storage" class="nostyle"></select></div>
+                                                </div>
+                                                    
+                                                <div class="dualBtn">
+                                                    
+                                                    <button id="to2" type="button" class="btn" ><!-- <span class="icon12 minia-icon-arrow-right-3"></span>-->右移</button>
+                                                    <!-- <button id="allTo2" type="button" class="btn" ><span class="icon12 iconic-icon-last"></span></button> -->
+                                                    <button id="to1" type="button" class="btn marginT5"><!--<span class="icon12 minia-icon-arrow-left-3"></span>-->左移</button>
+                                                    <!-- <button id="allTo1" type="button"class="btn marginT5" ><span class="icon12 iconic-icon-first"></span></button>-->
+                                                    
+                                                </div>
+                                                    
+                                                <div class="rightBox">
+                                                    <div class="searchBox"><input type="text" id="box2Filter" class="searchField" placeholder="搜索......" /><button id="box2Clear"  type="button" class="btn" ><span class="icon12  icomoon-icon-cancel-3"></span></button></div>
+                                                	<!-- 右边-->
+													<span style="color:red;">项目参与人员</span>
+												    <select name="userid[]" id="box2View" multiple="multiple" class="multiple nostyle" style="height:300px;">
+														<volist name="userYesList" id="vo">
+														<option value="{$vo.id}">{$vo.nickname}</option>
+														</volist>
+														
+													</select><br/>
+                                                
+												    <span id="box2Counter" class="count"></span>
+                                                    
+                                                    <div class="dn"><select id="box2Storage" class="nostyle"></select></div>
+                                                </div>
+
+                                            </div> 
+                                        </div>
+										<button class="btn" >提交</button>
+										<input type="hidden" name="send" value="1" /> 
+                                    </form>
+
+                                </div>
+
+                            </div><!-- End .box -->
+							
+							
+							
+							
+	
+                        </div><!-- End .span6 -->
+
+                    </div><!-- End .row-fluid -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		 
+
+	<include file="Footer:bottom" />
