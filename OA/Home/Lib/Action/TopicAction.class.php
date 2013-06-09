@@ -34,10 +34,11 @@ class TopicAction extends Action {
 		$aVoices = $File->getDataById(implode(',',$aVoiceIds),'id', 'id,url');	
 		
 		//评论数据处理
-		$aComIds =  getArrayByField($list,'new_comids', 'id');
-		$comIds =  implode(',',$aComIds);
+		$aComIds =  getArrayByField($list,'new_comids', 'id');		//找出数组中的new_comids字段，并且按照id分组
+		$comIds =  implode(',',$aComIds);							
 		if (!empty($comIds)) {
 			$aComs = $Comment->getDataById($comIds,'id', '*');
+			dump($aComs);
 		}
 	
 		foreach ($aComs AS $key=>$val) {
