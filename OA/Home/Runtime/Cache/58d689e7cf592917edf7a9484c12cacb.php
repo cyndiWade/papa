@@ -85,7 +85,7 @@
 </style>
 </head>
 <body>
-	
+
 ﻿ <!-- loading animation -->
     <div id="qLoverlay"></div>
     <div id="qLbar"></div>
@@ -232,7 +232,9 @@
 
                                     <h4>
                                         <span class="icon16 icomoon-icon-equalizer-2"></span>
-                                        <span>主题列表<a href="?s=/User/addUser"><button class="btn">新建</button></span>
+                                        <span>拍拍列表
+										<!--<a href="?s=/User/addUser"><button class="btn">新建</button>-->
+										</span>
                                     </h4>
                                     <a href="#" class="minimize">Minimize</a>
                                 </div>
@@ -241,34 +243,31 @@
                                         <thead>
                                           <tr>
                                             <th>序号</th>
-                                            <th>员工姓名</th>
-                                            <th>账号名</th>
-                                            <th>描述</th>
-                                            <th>是否在职</th>
+                                            <th>图片地址</th>
+                                            <th>声音地址</th>
+                                            <th>创建时间</th>
+											<th>最新评论</th>
                                             <th>操作</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        <?php if(is_array($UserLis)): $i = 0; $__LIST__ = $UserLis;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-                                            <td><?php echo ($i); ?></td>
-                                            <td><?php echo ($vo["nickname"]); ?></td>
-                                            <td><p class="text05"><?php echo ($vo["account"]); ?></p></td>
+                                        <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+                                            <td><?php echo ($vo["id"]); ?></td>
+                                            <td><?php echo ($vo[pic][url]); ?></td>
+                                            <td><p class="text05"><?php echo ($vo[voice][url]); ?></p></td>
                                             <td><p class="text05">	<?php echo ($vo["remark"]); ?></p></td>
-                                            <td><p class="text06">                    	
-												<?php if($vo["status"] == 1 ): ?>在职										
-												<?php else: ?> <span style="color:red;">离职</span><?php endif; ?>
-												</p>
-											</td>
+            								<td>
+                                                <div class="controls center">
+												<?php if(is_array($vo[coms])): $i = 0; $__LIST__ = $vo[coms];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$com): $mod = ($i % 2 );++$i;?>评论人：<?php echo ($com["uid"]["id"]); ?> | 评论内容：<?php echo ($com["content"]); ?> | 图片地址：<?php echo ($com["voice"]["url"]); ?>
+													<br /><?php endforeach; endif; else: echo "" ;endif; ?>
+												</div>
+                                            </td>
 											<td>
                                                 <div class="controls center">
-                                                	<a href="?s=/User/userDetailed/<?php echo ($vo["id"]); ?>" title="详细信息" class="tip"><span class="icon12  icomoon-icon-user-3"></span></a>
-                                                    <a href="?s=/User/updateUser/<?php echo ($vo["id"]); ?>" title="编辑" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    
-													<?php if($vo["status"] == 1 ): ?><a href="?s=/User/deleteUser/<?php echo ($vo["id"]); ?>/0/leave" title="离职" class="tip" ><span class="icon12 icomoon-icon-smiley"></span></a>								
-													<?php else: ?> 
-														<a href="?s=/User/deleteUser/<?php echo ($vo["id"]); ?>/1/leave" title="恢复" class="tip" ><span class="icon12 icomoon-icon-sad-2"></span></a><?php endif; ?>
+													<!-- 
 													<a href="?s=/User/deleteUser/<?php echo ($vo["id"]); ?>/1/delete" title="删除" class="tip" onclick="return confirm('删除后无法恢复，确定要删除吗？') ? true : false"><span class="icon12 icomoon-icon-remove"></span></a>			
-                                                </div>
+                                                	-->
+												</div>
                                             </td>
                                           </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                                         </tbody>

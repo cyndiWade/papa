@@ -46,6 +46,7 @@ class TopicAction extends BaseAction {
 
 	public function show() {
 		$this->assign('list',$this->_show());
+		//print_r($this->_show());
 		$this->display();
 	}
 }

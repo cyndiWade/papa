@@ -52,7 +52,9 @@
 
                                     <h4>
                                         <span class="icon16 icomoon-icon-equalizer-2"></span>
-                                        <span>主题列表<a href="?s=/User/addUser"><button class="btn">新建</button></span>
+                                        <span>拍拍列表
+										<!--<a href="?s=/User/addUser"><button class="btn">新建</button>-->
+										</span>
                                     </h4>
                                     <a href="#" class="minimize">Minimize</a>
                                 </div>
@@ -61,38 +63,34 @@
                                         <thead>
                                           <tr>
                                             <th>序号</th>
-                                            <th>员工姓名</th>
-                                            <th>账号名</th>
-                                            <th>描述</th>
-                                            <th>是否在职</th>
+                                            <th>图片地址</th>
+                                            <th>声音地址</th>
+                                            <th>创建时间</th>
+											<th>最新评论</th>
                                             <th>操作</th>
                                           </tr>
                                         </thead>
                                         <tbody>
-                                        <volist name="UserLis" id="vo" key="i">
+                                        <volist name="list" id="vo" key="i">
                                           <tr>
-                                            <td>{$i}</td>
-                                            <td>{$vo.nickname}</td>
-                                            <td><p class="text05">{$vo.account}</p></td>
+                                            <td>{$vo.id}</td>
+                                            <td>{$vo[pic][url]}</td>
+                                            <td><p class="text05">{$vo[voice][url]}</p></td>
                                             <td><p class="text05">	{$vo.remark}</p></td>
-                                            <td><p class="text06">                    	
-												<if condition="$vo.status eq 1 "> 在职										
-												<else /> <span style="color:red;">离职</span>								
-												</if>
-												</p>
-											</td>
+            								<td>
+                                                <div class="controls center">
+												<volist name="vo[coms]" id="com">
+													评论人：{$com.uid.id} | 评论内容：{$com.content} | 图片地址：{$com.voice.url}
+													<br />
+												</volist>
+												</div>
+                                            </td>
 											<td>
                                                 <div class="controls center">
-                                                	<a href="?s=/User/userDetailed/{$vo.id}" title="详细信息" class="tip"><span class="icon12  icomoon-icon-user-3"></span></a>
-                                                    <a href="?s=/User/updateUser/{$vo.id}" title="编辑" class="tip"><span class="icon12 icomoon-icon-pencil"></span></a>
-                                                    
-													<if condition="$vo.status eq 1 ">
-														<a href="?s=/User/deleteUser/{$vo.id}/0/leave" title="离职" class="tip" ><span class="icon12 icomoon-icon-smiley"></span></a>								
-													<else /> 
-														<a href="?s=/User/deleteUser/{$vo.id}/1/leave" title="恢复" class="tip" ><span class="icon12 icomoon-icon-sad-2"></span></a>							
-													</if>
+													<!-- 
 													<a href="?s=/User/deleteUser/{$vo.id}/1/delete" title="删除" class="tip" onclick="return confirm('删除后无法恢复，确定要删除吗？') ? true : false"><span class="icon12 icomoon-icon-remove"></span></a>			
-                                                </div>
+                                                	-->
+												</div>
                                             </td>
                                           </tr>
 										</volist>
