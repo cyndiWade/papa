@@ -1251,7 +1251,7 @@ $(document).ready(function() {
 			"bLengthChange": false,
 			"aoColumnDefs": [{ 
 				"bSortable": false, "aTargets": [ 0, 1, 2, 3 ] 
-			}],
+			}]
 		});
 	}
 	if($('table').hasClass('emailTable')){

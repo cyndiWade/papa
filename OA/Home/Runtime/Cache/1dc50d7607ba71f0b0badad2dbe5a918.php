@@ -162,7 +162,7 @@
 						<li>
                             <a href="#"><span class="icon16 icomoon-icon-equalizer-2"></span>功能模块管理</a>
 							<ul class="sub">
-                            	<li><a href="?s=/Topic/show"><span class="icon16 icomoon-icon-arrow-right-2"></span>项目列表</a></li>
+                            	<li><a href="?s=/Topic/show"><span class="icon16 icomoon-icon-arrow-right-2"></span>主题列表</a></li>
                            		<li><a href="#"><span class="icon16 icomoon-icon-arrow-right-2"></span>开发中</a></li>
 						    </ul>
                         </li>

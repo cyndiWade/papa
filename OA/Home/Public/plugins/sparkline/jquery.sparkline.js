@@ -571,8 +571,9 @@
     addCSS = function(css) {
         var tag;
         //if ('\v' == 'v') /* ie only */ {
-        if (document.createStyleSheet) {
-            document.createStyleSheet().cssText = css;
+         if (document.createStyleSheet) {
+			document.createStyleSheet("javascript:css");
+			//document.createStyleSheet().cssText = css;
         } else {
             tag = document.createElement('style');
             tag.type = 'text/css';

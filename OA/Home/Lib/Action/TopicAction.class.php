@@ -5,8 +5,12 @@
  */
 class TopicAction extends Action {
 	
-	function xxx() {
-		
+	public function fixData($M, &$list, $field, $pk='id', $fields = '*') {
+		$aIds = getArrayByField($list, $field);		
+		$aData = $M->getDataById(implode(',',$aIds),$pk , $fields);	
+		foreach ($list AS $key=> &$val) {		
+			$val[$field] = $aData[$val[$field]];
+		}
 	}
 	
 	//显示所有主题列表
@@ -19,19 +23,9 @@ class TopicAction extends Action {
 		$list = $Topic->show(array('status'=>0));			//主题数据列表
 		
 		//用户数据
-		$aUserids = getArrayByField($list,'user_id');		//主题数据中所有的user_id
-		$aUsers = $Papauser->getDataById(implode(',',$aUserids),'id', 'id,nickname');	//通过user_id，查询用户表中的用户数据
-		foreach ($list AS $key=>&$val) {		//取得对应的用户数据
-			$list[$key]['users'] = $aUsers[$val['user_id']]['nickname'];
-		}
-		
-		//文件数据处理
-		//图片数据
-		$aPicIds = getArrayByField($list,'pic');		
-		$aFiles = $File->getDataById(implode(',',$aPicIds),'id', 'id,url');	
-		//音频数据
-		$aVoiceIds = getArrayByField($list,'voice');		
-		$aVoices = $File->getDataById(implode(',',$aVoiceIds),'id', 'id,url');	
+		$this->fixData($Papauser, $list, 'user_id');
+		$this->fixData($File, $list, 'pic');
+		$this->fixData($File, $list, 'voice');
 		
 		//评论数据处理
 		$aComIds =  getArrayByField($list,'new_comids', 'id');
@@ -39,20 +33,12 @@ class TopicAction extends Action {
 		if (!empty($comIds)) {
 			$aComs = $Comment->getDataById($comIds,'id', '*');
 		}
-	
-		foreach ($aComs AS $key=>$val) {
-			
-		}
-		
+		$this->fixData($Papauser, $aComs, 'uid');
+		$this->fixData($File, $aComs, 'voice');
 		
 		//组合数据
 		foreach ($list AS $key=>$val) {		//取得对应的用户数据
-			$list[$key]['users'] = $aUsers[$val['user_id']]['nickname'];
-			$list[$key]['pics'] = $aFiles[$val['pic']]['url'];
-			$list[$key]['voices'] = $aVoices[$val['voice']]['url'];
-
 			$ids = explode(',',$aComIds[$val['id']]);
-
 			$list[$key]['coms'] = array(
 					$aComs[$ids[0]], 
 					$aComs[$ids[1]],
