@@ -8,5 +8,5 @@
 	define('APP_PATH','Home/');
 	//引入框架核心文件
 	require'../ThinkPHP/ThinkPHP.php';
-aaaaa
+
 ?>
