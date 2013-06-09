@@ -1,9 +1,9 @@
 <?php
 /**
- *主题类
+ * 评论表
  */
 
-class TopicModel extends CommonModel {
+class CommentModel extends CommonModel {
 	
 	public function show($condition) {
 		
@@ -11,8 +11,9 @@ class TopicModel extends CommonModel {
 		return $data;
 	}
 	
-
-	
+	public function get_one($condition) {
+		return $this->where($condition)->find();
+	}
 	
 	public function add() {
 		return $this->add();

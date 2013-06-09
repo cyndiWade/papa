@@ -47,4 +47,47 @@ function time_conversion_2($data){
 	$arr=explode("-",$data);
 	return $arr[1].'/'.$arr[2].'/'.$arr[0];
 }
+
+
+// function arrAddField(&$arr,$key,$val) {
+// 	foreach ($arr as $k=>$v) {
+// 		$arr[$] 
+// 	}
+// }
+
+/**
+ * 获取数组val值中的字段
+ * @param Array $arr
+ * @param string $field
+ * return Array
+ */
+function getArrayByField(&$arr,$field, $key = '') {
+	$aRet = array();
+	if ($key !== '') {
+		foreach ($arr AS $aVal) {
+			$aRet[$aVal[$key]] = $aVal[$field];
+		}
+	} else {
+		foreach ($arr AS $aVal) {
+			$aRet[] = $aVal[$field];
+		}
+	}
+	return $aRet;
+}
+
+/**
+ * 根据Val值，重新排序数组
+ * @param Array $arr
+ * @param unknown_type $k
+ */
+function setArrayKey(&$arr,$k) {
+	$aRet = array();
+	foreach ($arr AS $aVal) {
+		$aRet[$aVal[$k]] = $aVal;
+	}
+	return $aRet;
+}
+
+
+
 ?>

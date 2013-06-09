@@ -1,18 +1,17 @@
 <?php
 /**
- *主题类
+ *拍拍用户表
  */
 
-class TopicModel extends CommonModel {
+class PapauserModel extends CommonModel {
+	
 	
 	public function show($condition) {
 		
 		$data = $this->where($condition)->select();
 		return $data;
 	}
-	
 
-	
 	
 	public function add() {
 		return $this->add();

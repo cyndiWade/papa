@@ -106,5 +106,26 @@ class CommonModel extends Model {
             return True;
         }
     }
+    
+    
+    
+    
+    
+    /**
+     * @param String $userids  1,2,3	查询条件
+     * @param String  $k  排序字段规则
+     * @param String $fields 需要查找的字段
+     */
+    public function getDataById($userids, $k='id', $fields='*')  {
+    	$condition[$k]  = array('in',$userids);
+    	$data =  $this->where($condition)->field($fields)->select();
+    
+    	return setArrayKey($data, $k);
+    }
+    
+
 }
+
+
+
 ?>
