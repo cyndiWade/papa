@@ -7,8 +7,10 @@
  */
 class ApizhangAction extends Action {
 	
-	public function index() {
-		
+	public function show() {
+		$Topic = A('Topic');
+
+		echo json_encode($Topic->_show());
 	}
 	
 	public function user() {

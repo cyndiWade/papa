@@ -3,18 +3,12 @@
 /**
  * 主题管理类
  */
-class TopicAction extends Action {
+class TopicAction extends BaseAction {
 	
-	public function fixData($M, &$list, $field, $pk='id', $fields = '*') {
-		$aIds = getArrayByField($list, $field);		
-		$aData = $M->getDataById(implode(',',$aIds),$pk , $fields);	
-		foreach ($list AS $key=> &$val) {		
-			$val[$field] = $aData[$val[$field]];
-		}
-	}
+	
 	
 	//显示所有主题列表
-	public function show() {
+	public function _show() {
 		$Topic = D('Topic');					//主题表
 		$Papauser = D('Papauser');		//用户表
 		$File = D('File');						//文件表
@@ -23,18 +17,17 @@ class TopicAction extends Action {
 		$list = $Topic->show(array('status'=>0));			//主题数据列表
 		
 		//用户数据
-		$this->fixData($Papauser, $list, 'user_id');
-		$this->fixData($File, $list, 'pic');
-		$this->fixData($File, $list, 'voice');
+		$this->fixData($Papauser, $list, 'user_id','id,nickname');
+		$this->fixData($File, $list, 'pic','id,url');
+		$this->fixData($File, $list, 'voice','id,size,url');
 		
 		//评论数据处理
 		$aComIds =  getArrayByField($list,'new_comids', 'id');		//找出数组中的new_comids字段，并且按照id分组
 		$comIds =  implode(',',$aComIds);							
 		if (!empty($comIds)) {
 			$aComs = $Comment->getDataById($comIds,'id', '*');
-			dump($aComs);
 		}
-		$this->fixData($Papauser, $aComs, 'uid');
+		$this->fixData($Papauser, $aComs, 'uid','id,account,header_pic');
 		$this->fixData($File, $aComs, 'voice');
 		
 		//组合数据
@@ -47,10 +40,14 @@ class TopicAction extends Action {
 			);
 		}
 
-		print_r($list);
-		//$this->display();
+		return $list;
+		
 	}	
 
+	public function show() {
+		$this->assign('list',$this->_show());
+		$this->display();
+	}
 }
 
 
