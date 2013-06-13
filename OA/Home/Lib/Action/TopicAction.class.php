@@ -57,7 +57,7 @@ class TopicAction extends BaseAction {
 	
 	
 	/**
-	 * 评论
+	 * 评论显示
 	 */
 	public function comment() {
 
@@ -79,12 +79,13 @@ class TopicAction extends BaseAction {
 			$Page = new Page($count,2);								
 			$comList = $Comment->all_com($tid,$Page->firstRow,$Page->listRows);
 		}
-		dump($comList);
+		$allList = array_merge($index,$comList);
+		dump($index);
 	}
 	
 	
 	//添加评论
-	public function addCom() {
+	public function add_com() {
 		
 	}
 	
