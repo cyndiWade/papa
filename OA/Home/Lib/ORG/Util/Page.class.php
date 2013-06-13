@@ -42,6 +42,7 @@ class Page {
      +----------------------------------------------------------
      */
     public function __construct($totalRows,$listRows='',$parameter='') {
+
         $this->totalRows = $totalRows;
         $this->parameter = $parameter;
         if(!empty($listRows)) {
@@ -49,6 +50,7 @@ class Page {
         }
         $this->totalPages = ceil($this->totalRows/$this->listRows);     //总页数
         $this->coolPages  = ceil($this->totalPages/$this->rollPage);
+
         $this->nowPage  = !empty($_GET[C('VAR_PAGE')])?intval($_GET[C('VAR_PAGE')]):1;
         if(!empty($this->totalPages) && $this->nowPage>$this->totalPages) {
             $this->nowPage = $this->totalPages;

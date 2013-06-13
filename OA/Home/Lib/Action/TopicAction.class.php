@@ -7,7 +7,9 @@ class TopicAction extends BaseAction {
 	
 	
 	
-	//显示所有主题列表
+	/**
+	 * 显示所有主题列表
+	 */
 	public function _show() {
 		$Topic = D('Topic');					//主题表
 		$Papauser = D('Papauser');		//用户表
@@ -44,11 +46,64 @@ class TopicAction extends BaseAction {
 		
 	}	
 
+	/**
+	 * 模板方法
+	 */
 	public function show() {
-		$this->assign('list',$this->_show());
-		//print_r($this->_show());
+		$data = $this->_show();
+		$this->assign('list',$data);
 		$this->display();
 	}
+	
+	
+	/**
+	 * 评论
+	 */
+	public function comment() {
+
+		$Topic = D('Topic');				//主题表
+		$Comment = D('Comment');	//评论表
+		
+		$tid = setSql($_GET['tid']);			//主题ID(SQL注入过滤)
+		
+
+		//获取主题数据
+		$index = $Topic->one($tid);
+		
+		if (count($index)) {
+			//获取评论数据
+			
+			//获取总记录数
+			import('@.ORG.Util.Page');	//分页类
+			$count =  $Comment->getCount(array('tid'=>$tid));		//获取记录条数
+			$Page = new Page($count,2);								
+			$comList = $Comment->all_com($tid,$Page->firstRow,$Page->listRows);
+		}
+		dump($comList);
+	}
+	
+	
+	//添加评论
+	public function addCom() {
+		
+	}
+	
+
+	
+	/**
+	 * 
+	 * import('ORG.Util.Page');
+		$Node = M('Node');
+	
+		$count = $Node->count();
+		
+		$Page = new Page($count,10);
+				
+		$map['id'] = array('gt','1');
+		$list = $Node->where($map)->limit($Page->firstRow.','.$Page->listRows)->select();
+	 * 
+	 */
+	
 }
 
 

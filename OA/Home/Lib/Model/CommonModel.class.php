@@ -124,6 +124,12 @@ class CommonModel extends Model {
     	return setArrayKey($data, $k);
     }
     
+    
+    //获取数据记录条数
+    public function getCount($condition) {
+    	return $this->where($condition)->count();
+    }
+    
 
 }
 

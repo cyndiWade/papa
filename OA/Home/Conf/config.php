@@ -23,7 +23,7 @@ $system = array(
 	//'TMPL_ACTION_ERROR' => 'public:error',
 
 	/*以下添加扩展配置*/
-		
+	'VAR_PAGE'=>'p',
 );
 
 //RBAC用户权限配置

@@ -264,6 +264,9 @@
                                             </td>
 											<td>
                                                 <div class="controls center">
+                                                	<a href="?s=/Topic/comment/tid/<?php echo ($vo["id"]); ?>" title="评论" class="tip">
+                                                		<span class="icon12  icomoon-icon-user-3"></span>
+													</a>	
 													<!-- 
 													<a href="?s=/User/deleteUser/<?php echo ($vo["id"]); ?>/1/delete" title="删除" class="tip" onclick="return confirm('删除后无法恢复，确定要删除吗？') ? true : false"><span class="icon12 icomoon-icon-remove"></span></a>			
                                                 	-->

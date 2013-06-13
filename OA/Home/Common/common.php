@@ -90,4 +90,36 @@ function setArrayKey(&$arr,$k) {
 
 
 
+/**
+ * 2.预防SQL注入，转义非法字符
+ * @param unknown_type $str
+ * @return Ambigous <unknown, string>
+ */
+function setString($str) {
+	return get_magic_quotes_gpc() ? $str : addslashes($str);
+}
+/**
+ * 3.把转译的字符返回没有转义前的样子
+ * @param string $str
+ * @return string
+ */
+function unSetString($str) {
+	return stripslashes($str);
+}
+//4.预防SQL注入
+function setSql($_str) {
+	if (is_array($_str)) {	//数组
+		foreach ($_str as $_key => $_value) {
+			$_string[$_key] =  setSql($_value);
+		}
+	} else if (is_object($_str)) {	//对象
+		foreach ($_str as $_key => $_value) {
+			$_string->$_key =  setSql($_value);
+		}
+	} else {	//字符串
+		$_string = setString($_str);
+	}
+	return $_string;
+}
+
 ?>
